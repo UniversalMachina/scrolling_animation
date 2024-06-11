@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsRevealed(true);
+    }, 1000); // Adjust the delay to your preference
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={`logo ${isRevealed ? 'hide' : ''}`}>Your Logo</div>
+      <div className={`content ${isRevealed ? 'reveal' : ''}`}>
+        <h1>Revealed Content</h1>
+      </div>
     </div>
   );
 }
