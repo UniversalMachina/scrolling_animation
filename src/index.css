@@ -2,28 +2,23 @@
 .App {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 200vh; /* Make the height larger to enable scrolling */
   background-color: white;
   overflow: hidden;
 }
 
 .logo {
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: bold;
-  transition: opacity 1s;
-  z-index: 1; /* Lower z-index */
-}
-
-.logo.hide {
-  opacity: 0;
+  z-index: 1;
 }
 
 .content {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -33,13 +28,20 @@
   align-items: center;
   background-color: gray;
   color: white;
-  clip-path: polygon(50% 0%, 50% 100%, 50% 100%, 50% 0%);
-  transition: clip-path 4s;
-  z-index: 2; /* Higher z-index */
+  z-index: 2;
+  transition: transform 0.1s linear; /* Smooth rotation */
 }
 
-.content.reveal {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+.content-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.spacer {
+  height: 200vh; /* Spacer to allow for scrolling */
 }
 
 h1 {
